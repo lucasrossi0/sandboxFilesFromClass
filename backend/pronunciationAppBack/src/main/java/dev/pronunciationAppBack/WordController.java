@@ -2,9 +2,8 @@ package dev.pronunciationAppBack;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 
@@ -17,6 +16,9 @@ public class WordController {
 
     @Autowired
     public WordRepository wordRepository;
+
+    @Autowired
+    private WordService wordService;
 
     @GetMapping("/hello")
     public String hello() {
@@ -32,5 +34,15 @@ public class WordController {
                 System.out.println("Word: " + word);
             }
             return words;
+    }
+
+    @PostMapping("/words/{word}")
+    public Word addWord(@PathVariable String word) {
+        return wordService.createWordFromDictionaryAPI(word);
+    }
+
+    @PostMapping("/words/batch")
+    public List<Word> addMultipleWords(@RequestBody List<String> words) {
+        return wordService.createMultipleWords(words);
     }
 }
