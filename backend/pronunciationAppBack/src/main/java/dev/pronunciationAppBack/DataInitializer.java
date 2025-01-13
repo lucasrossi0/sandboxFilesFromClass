@@ -40,8 +40,8 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // List of words to fetch from the API
         List<String> wordsToFetch = Arrays.asList(
-                "depression", "sadness", "tree", "moist", "dead",
-                "butt", "hot", "men", "women", "ass"
+                "sun", "happy", "tree", "car", "sky",
+                "airplane", "hot", "cold", "coffee", "water"
         );
 
         wordService.createMultipleWords(wordsToFetch);
